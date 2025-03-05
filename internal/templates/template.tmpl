@@ -159,6 +159,13 @@ type {{.Name}} struct { {{- range .Fields}}
   {{.Name}} {{.Type}} {{if .Tag}}{{$.Q}}{{.Tag}}{{$.Q}}{{end}}
   {{- end}}
 }
+
+{{$p := .Name}}
+{{range .Fields}}
+func (e *{{$p}}) Get{{.Name}}() {{.Type}} {
+  return e.{{.Name}}
+}
+{{end}}
 {{end}}
 {{end}}
 
